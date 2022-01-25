@@ -1,6 +1,6 @@
 //Implementation of Queue using Linked List
 //hi man
-//kzg ya qatery
+//kzg ya mohand
 #include<iostream>
 #include <ctime>
 
