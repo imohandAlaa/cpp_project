@@ -41,10 +41,10 @@ class hotel{
     hotel(){front=rear=NULL;}
     void CheckIn();
     void CheckOut();
-    void displayQuests();
+    void displayGuests();
     void checkCpacity();
     void SearchforGuest();
-    void makePayment();
+    void MakePayment();
     void IsEmpty();
     void IsFull();
     void destroyQueue();
@@ -99,13 +99,45 @@ void hotel::CheckIn(){
     //adding the node in the end of the queue
     rear->next = temp;
     rear = temp;
-    
+
 
 
 }
 
-int main(){
 
+
+
+
+
+
+
+
+
+void dispMenu()
+{
+	system("CLS");
+	cout<<"\n";
+    	cout<<"\t\t ===================================================\n";
+	cout<<"\t\t\t\t|   Hotel Management   |\n";
+	cout<<"\t\t ===================================================\n\n\n";
+    cout<<"\t\t\t\t|   1.CheckIn";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   2.CheckOut";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   3.displayGuests";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   4.checkCpacity";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   5.SearchforGuest";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   6.MakePayment";
+    	cout<<"\n\t\t----------------------------------------------------\n"; 
+    cout<<"\n\n\t\t\t\t|   Enter your choice [1-6]: ";
+    	cout<<"\n\t\t----------------------------------------------------\n";     
+}
+int main(){
+    
+    dispMenu();
 
 
 }
