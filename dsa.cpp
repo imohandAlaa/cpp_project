@@ -7,10 +7,9 @@ using namespace std;
  
 
 int const size = 20;
-int counter;
+int counter = 20;
 
 struct Guest{
-
     string GuestName;
     string Guestid;
     int contactNumber;
@@ -46,20 +45,21 @@ class hotel{
     void SearchforGuest();
     void MakePayment();
     void IsEmpty();
-    void IsFull();
+    bool IsFull();
     void destroyQueue();
     ~hotel();
 };
 
 // check in function stores quest important data
 void hotel::CheckIn(){
+    
     string name;
     string id;
     int number;
     string date;
     int duration;
     Guest* temp = new Guest();
-
+    
     
 
     cout<<"\n";
@@ -100,6 +100,40 @@ void hotel::CheckIn(){
     rear->next = temp;
     rear = temp;
 
+   // counter++;
+
+}
+
+void hotel::CheckOut(){
+
+    //if(IsEmpty){}
+    //first guest checkedin will checkout first
+    Guest* temp = new Guest();
+
+    cout<<"\n";
+    	cout<<"\t\t ===================================================\n";
+	cout<<"\t\t\t\t|   Hotel - CheckOut    |\n";
+	cout<<"\t\t ===================================================\n\n\n";
+    cout<<"\t\t\t\t|   GuestName ->"<<front->GuestName;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   GuestId ->"<<front->Guestid;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   ContactNumber ->"<<front->contactNumber;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   CheckInDate ->"<<front->checkInDate;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   DurationOfStay ->"<<front->DurationOfStay;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+
+
+
+
+    temp = front;
+    front = front->next;
+    temp->next = NULL;
+
+    delete temp;
+    
 
 
 }
@@ -107,15 +141,18 @@ void hotel::CheckIn(){
 
 
 
+void hotel::IsEmpty(){}
 
+/*
+bool hotel::IsFull(){
 
-
-
-
+    return bool(counter == size);
+}
+*/
 
 void dispMenu()
 {
-	system("CLS");
+	
 	cout<<"\n";
     	cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t\t|   Hotel Management   |\n";
@@ -138,7 +175,7 @@ void dispMenu()
 int main(){
     
     dispMenu();
-
+    
 
 }
 
