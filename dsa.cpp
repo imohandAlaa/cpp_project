@@ -41,6 +41,7 @@ class hotel{
     void CheckIn();
     void CheckOut();
     void displayGuests();
+    void show(Guest* item);
     void checkCpacity();
     void SearchforGuest();
     void MakePayment();
@@ -106,7 +107,7 @@ void hotel::CheckIn(){
 
 void hotel::CheckOut(){
 
-    //if(IsEmpty){}
+    //if(IsEmpty){]}
     //first guest checkedin will checkout first
     Guest* temp = new Guest();
 
@@ -114,6 +115,7 @@ void hotel::CheckOut(){
     	cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t\t|   Hotel - CheckOut    |\n";
 	cout<<"\t\t ===================================================\n\n\n";
+    show(temp);
     cout<<"\t\t\t\t|   GuestName ->"<<front->GuestName;
     	cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   GuestId ->"<<front->Guestid;
@@ -125,23 +127,157 @@ void hotel::CheckOut(){
     cout<<"\t\t\t\t|   DurationOfStay ->"<<front->DurationOfStay;
     	cout<<"\n\t\t----------------------------------------------------\n";
 
-
-
-
     temp = front;
     front = front->next;
     temp->next = NULL;
-
     delete temp;
     
+}
 
+
+void hotel:: show(Guest* item)
+{
+
+    Guest* temp = item;
+    cout<<"\n";
+    	
+	cout<<"\t\t ===================================================\n\n\n";
+    cout<<"\t\t\t\t|   GuestName ->"<<temp->GuestName;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   GuestId ->"<<temp->Guestid;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   ContactNumber ->"<<temp->contactNumber;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   CheckInDate ->"<<temp->checkInDate;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   DurationOfStay ->"<<temp->DurationOfStay;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+
+}
+
+
+
+void hotel::displayGuests()
+{
+    int counter2 = 1;
+    Guest* show;
+
+    for(show = front;show !=NULL;show = show->next)
+    {
+
+    cout<<"\n";
+    	cout<<"\t\t ===================================================\n";
+	cout<<"\t\t\t\t|   Hotel - DisplayGuests    |\n";
+	cout<<"\t\t ===================================================\n\n\n";
+    cout<<"\t\t\t\t|   GuestName ->"<<show->GuestName;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   GuestId ->"<<show->Guestid;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   ContactNumber ->"<<show->contactNumber;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   CheckInDate ->"<<show->checkInDate;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   DurationOfStay ->"<<show->DurationOfStay;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    counter2++;
+    }
+
+}
+
+void hotel::SearchforGuest(){
+    int choice;
+    Guest* fetch;
+     cout<<"\n";
+    	cout<<"\t\t ===================================================\n";
+	cout<<"\t\t\t\t|   Hotel - SearchforGuest    |\n";
+	cout<<"\t\t ===================================================\n\n\n";
+    cout<<"\t\t\t\t|   Search by";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   ->1.GuestName ";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t\t\t|   ->2.GuestId ";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    cin >> choice;
+
+    if(choice == 1)
+    {
+        string Name;
+        cout<<"\t\t\t\t|    Enter GuestName -> ";
+        cin >> Name;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+        for(fetch = front;fetch !=NULL;fetch = fetch->next)
+        {
+            if(fetch->GuestName == Name)
+            {
+                cout<<"\n";
+    	        cout<<"\t\t ===================================================\n";
+	            cout<<"\t\t\t\t|   Guest is found Successfully   |\n";
+	            cout<<"\t\t ===================================================\n\n\n";
+                cout<<"\t\t\t\t|   GuestName ->"<<fetch->GuestName;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+                cout<<"\t\t\t\t|   GuestId ->"<<fetch->Guestid;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+                cout<<"\t\t\t\t|   ContactNumber ->"<<fetch->contactNumber;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+                cout<<"\t\t\t\t|   CheckInDate ->"<<fetch->checkInDate;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+                cout<<"\t\t\t\t|   DurationOfStay ->"<<fetch->DurationOfStay;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+
+            }else
+            {
+                cout<<"\n";
+    	        cout<<"\t\t ===================================================\n";
+	            cout<<"\t\t\t\t|   Guest is not found Successfully   |\n";
+                cout<<"\t\t ===================================================\n\n\n";
+            }
+        }
+        
+
+    }else
+    {
+        string ID;
+        cout<<"\t\t\t\t|    Enter GuestID -> ";
+        cin >> ID;
+    	cout<<"\n\t\t----------------------------------------------------\n";
+        for(fetch = front;fetch !=NULL;fetch = fetch->next)
+        {
+            if(fetch->Guestid == ID)
+            {
+                cout<<"\n";
+    	        cout<<"\t\t ===================================================\n";
+	            cout<<"\t\t\t\t|   Guest is found Successfully   |\n";
+	            cout<<"\t\t ===================================================\n\n\n";
+                cout<<"\t\t\t\t|   GuestName ->"<<fetch->GuestName;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+                cout<<"\t\t\t\t|   GuestId ->"<<fetch->Guestid;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+                cout<<"\t\t\t\t|   ContactNumber ->"<<fetch->contactNumber;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+                cout<<"\t\t\t\t|   CheckInDate ->"<<fetch->checkInDate;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+                cout<<"\t\t\t\t|   DurationOfStay ->"<<fetch->DurationOfStay;
+    	        cout<<"\n\t\t----------------------------------------------------\n";
+
+            }else
+            {
+                cout<<"\n";
+    	        cout<<"\t\t ===================================================\n";
+	            cout<<"\t\t\t\t|   Guest is not found Successfully   |\n";
+                cout<<"\t\t ===================================================\n\n\n";
+            }
+
+        }
+    }
 
 }
 
 
 
 
-void hotel::IsEmpty(){}
+
+
+
 
 /*
 bool hotel::IsFull(){
