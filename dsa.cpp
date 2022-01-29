@@ -35,7 +35,6 @@ struct Guest{
         this->DurationOfStay =duration;
         this->GuestRank = rank;
     }
-
 };
  
 class hotel{
@@ -52,7 +51,7 @@ class hotel{
     void checkCpacity();
     void SearchforGuest();
     void MakePayment();
-    void IsEmpty();
+    bool IsEmpty();
     bool IsFull();
     void destroyQueue();
    // ~hotel();
@@ -111,17 +110,32 @@ void hotel::CheckIn(){
 
 void hotel::CheckOut()
 {
-    Guest* temp = front;
-    system("CLS");
-    cout<<"\n";
-    cout<<"\t\t ===================================================\n";
-	cout<<"\t\t\t\t|   Hotel - CheckOut    |\n";
-	cout<<"\t\t ===================================================\n\n\n";
-    show(front);
-    temp = front;
-    front = front->next;
-    temp->next = NULL;
-    delete temp;
+    if(!IsEmpty())
+    {
+         Guest* temp = front;
+        system("CLS");
+        cout<<"\n";
+        cout<<"\t\t ===================================================\n";
+        cout<<"\t\t\t\t|   Hotel - CheckOut    |\n";
+        cout<<"\t\t ===================================================\n\n\n";
+        show(front);
+        temp = front;
+        front = front->next;
+        temp->next = NULL;
+        delete temp;
+
+
+
+
+       
+
+    }else
+    {
+         cout<<"\t\t ===================================================\n";
+        cout<<"\t\t\t\t|  opss!! the hotel is empty     |\n";
+        cout<<"\t\t ===================================================\n\n\n";
+       
+    }
 }
 
 
@@ -232,12 +246,11 @@ void hotel::SearchforGuest(){
 }
 
 
-
-
-
-void hotel :: IsEmpty(){
-
-    
+bool hotel :: IsEmpty()
+{
+    if(rear == NULL && front == NULL){return true;}
+    else
+        return false;
 }
 
 void dispMenu()
@@ -259,8 +272,8 @@ void dispMenu()
     	cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   6.MakePayment";
     	cout<<"\n\t\t----------------------------------------------------\n"; 
-    cout<<"\n\n\t\t\t\t|   Enter your choice [1-6]: ";
-    	cout<<"\n\t\t----------------------------------------------------\n";     
+    cout<<"\t\t\t\t|   Enter your choice [1-6]: ";
+    	cout<<"\n\t\t----------------------------------------------------\n\n\n";     
 
 }
 int main(){
@@ -290,6 +303,7 @@ do
 		}
 		
 	} while ((choice > 0) && (choice < 5));
+
 
     return 0;
 }
