@@ -127,8 +127,10 @@ void hotel::CheckOut()
         show(front);
         temp = front;
         front = front->next;
+        //temp->next->GuestRank = counter - 1;
         temp->next = NULL;
         delete temp;
+        counter--;
 
     }else
     {
@@ -249,9 +251,29 @@ void hotel::SearchforGuest(){
 
 void hotel :: CpacityReport()
 {
-    
-
-
+    cout<<"\n";
+    	cout<<"\t\t ===================================================\n";
+	cout<<"\t\t\t\t|   Hotel Management - CpacityReport  |\n";
+	cout<<"\t\t ===================================================\n";
+    if(IsEmpty()){
+        cout<<"\t\t ===================================================\n";
+        cout<<"\t\t\t\t|       the hotel is Empty     |\n";
+        cout<<"\t\t ===================================================\n";
+         cout<<"\t\t\t\t|   there is "<< size << "  Empty  Room";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    }else if (IsFull())
+    {
+        cout<<"\t\t ===================================================\n";
+        cout<<"\t\t\t\t|  opss!! the hotel is FULL     |\n";
+        cout<<"\t\t ===================================================\n";
+    }else
+    {
+        cout<<"\n\t\t----------------------------------------------------\n";
+        cout<<"\t\t\t\t|  we have  "<< counter-1 << "  busy Room ";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+        cout<<"\t\t\t\t|  we have  "<< size - counter + 1 << "  empty room";
+    	cout<<"\n\t\t----------------------------------------------------\n";
+    }
 }
 
 
@@ -313,27 +335,14 @@ do
                 break;
             case 4: {guest.SearchforGuest();}
                 break;
+            case 5: {guest.CpacityReport();}
+                break;    
 			default: cout << "\nThank you.. see you again.." << endl;
 					 return 0;
 		}
 		
-	} while ((choice > 0) && (choice < 5));
+	} while ((choice > 0) && (choice < 6));
 
 
     return 0;
 }
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
