@@ -127,7 +127,7 @@ void hotel::CheckOut()
         show(front);
         temp = front;
         front = front->next;
-        //temp->next->GuestRank = counter - 1;
+        temp->next->GuestRank = temp -> GuestRank;
         temp->next = NULL;
         delete temp;
         counter--;
