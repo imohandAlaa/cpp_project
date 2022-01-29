@@ -6,7 +6,7 @@
 using namespace std;
  
 
-int const size = 20;
+int const size = 3;
 int counter = 1;
 
 struct Guest{
@@ -48,7 +48,7 @@ class hotel{
     void CheckOut();
     void displayGuests();
     void show(Guest* item);
-    void checkCpacity();
+    void CpacityReport();
     void SearchforGuest();
     void MakePayment();
     bool IsEmpty();
@@ -60,6 +60,7 @@ class hotel{
 // check in function stores quest important data
 void hotel::CheckIn(){
     
+    if(!IsFull()){
     string name;
     string id;
     int number;
@@ -70,7 +71,7 @@ void hotel::CheckIn(){
     cout<<"\n";
     cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t\t|   Hotel - CheckIn    |\n";
-	cout<<"\t\t ===================================================\n\n\n";
+	cout<<"\t\t ===================================================\n";
     cout<<"\t\t\t\t|   Guest number -> "<<counter;
     cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   GuestName ->";
@@ -87,7 +88,7 @@ void hotel::CheckIn(){
     cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   DurationOfStay ->";
 	cin >> duration;
-    cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\n\t\t----------------------------------------------------\n\n\n";
 
     temp->GuestName = name;
     temp->Guestid = id;
@@ -106,34 +107,34 @@ void hotel::CheckIn(){
     rear->next = temp;
     rear = temp;
     counter++;
+    }else
+    {
+         cout<<"\t\t ===================================================\n";
+        cout<<"\t\t\t\t|  opss!! the hotel is FULL     |\n";
+        cout<<"\t\t ===================================================\n";
+    }
 }
 
 void hotel::CheckOut()
 {
     if(!IsEmpty())
     {
-         Guest* temp = front;
-        system("CLS");
+        Guest* temp = front;
         cout<<"\n";
         cout<<"\t\t ===================================================\n";
         cout<<"\t\t\t\t|   Hotel - CheckOut    |\n";
-        cout<<"\t\t ===================================================\n\n\n";
+        cout<<"\t\t ===================================================\n";
         show(front);
         temp = front;
         front = front->next;
         temp->next = NULL;
         delete temp;
 
-
-
-
-       
-
     }else
     {
          cout<<"\t\t ===================================================\n";
         cout<<"\t\t\t\t|  opss!! the hotel is empty     |\n";
-        cout<<"\t\t ===================================================\n\n\n";
+        cout<<"\t\t ===================================================\n";
        
     }
 }
@@ -143,7 +144,7 @@ void hotel:: show(Guest *item)
 {
     Guest *temp = item;
     cout<<"\n";
-	cout<<"\t\t ===================================================\n\n\n";
+	cout<<"\t\t ===================================================\n";
     cout<<"\t\t\t\t|   GuestRank ->"<<temp->GuestRank;
     	cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   GuestName ->"<<temp->GuestName;
@@ -246,11 +247,25 @@ void hotel::SearchforGuest(){
 }
 
 
+void hotel :: CpacityReport()
+{
+    
+
+
+}
+
+
 bool hotel :: IsEmpty()
 {
     if(rear == NULL && front == NULL){return true;}
     else
         return false;
+}
+bool hotel :: IsFull(){
+    if(counter  == size + 1)
+        return true;
+    else
+        return false;    
 }
 
 void dispMenu()
@@ -259,7 +274,7 @@ void dispMenu()
 	cout<<"\n";
     	cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t\t|   Hotel Management   |\n";
-	cout<<"\t\t ===================================================\n\n\n";
+	cout<<"\t\t ===================================================\n";
     cout<<"\t\t\t\t|   1.CheckIn";
     	cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   2.CheckOut";
