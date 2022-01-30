@@ -46,6 +46,7 @@ class hotel{
     };
     void CheckIn();
     void CheckOut();
+    void updateRanks();
     void displayGuests();
     void show(Guest* item);
     void CpacityReport();
@@ -104,16 +105,27 @@ void hotel::CheckIn(){
         return;
     }
     //adding the node in the end of the queue
-    temp->next = NULL;
     rear->next = temp;
     rear = temp;
-
     
     }else
     {
          cout<<"\t\t ===================================================\n";
         cout<<"\t\t\t\t|  opss!! the hotel is FULL     |\n";
         cout<<"\t\t ===================================================\n";
+    }
+}
+void hotel::updateRanks()
+{
+
+    if (front != NULL)
+    {    Guest *temp = front;
+        for (temp = front; temp != NULL; temp = temp->next)
+        {
+            temp->GuestRank = temp->GuestRank - 1;
+            front = temp;
+        }
+        
     }
 }
 
@@ -129,11 +141,12 @@ void hotel::CheckOut()
         show(front);
         temp = front;
         front = front->next;
-        temp->next->GuestRank = temp -> GuestRank;
+        //temp->next->GuestRank = temp -> GuestRank;
         temp->next = NULL;
+        
         delete temp;
         counter--;
-
+        updateRanks();
     }else
     {
          cout<<"\t\t ===================================================\n";
@@ -168,7 +181,6 @@ void hotel:: show(Guest *item)
 
 void hotel::displayGuests()
 {
-    int counter2 = 1;
     Guest* display;
     for(display = front;display != NULL;display = display->next)
     {
@@ -176,7 +188,6 @@ void hotel::displayGuests()
     cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t\t|   Hotel - DisplayGuests    |\n";
 	show(display);
-    counter2++;
     }
 
 }
