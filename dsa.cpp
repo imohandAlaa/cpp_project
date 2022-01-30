@@ -56,7 +56,6 @@ class hotel{
     void MakePayment();
     bool IsEmpty();
     bool IsFull();
-    
 };
 
 // check in function stores quest important data
@@ -190,7 +189,7 @@ void hotel:: show(Guest *item)
 
 
 void hotel::displayGuests()
-{
+{   if(!IsEmpty()){
     Guest* display;
     for(display = front;display != NULL;display = display->next)
     {
@@ -198,6 +197,12 @@ void hotel::displayGuests()
     cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t\t|   Hotel - DisplayGuests    |\n";
 	show(display);
+    }
+    }else
+    {
+        cout<<"\t\t\t\t|   Hotel - DisplayGuests    |\n";
+        cout<<"\t\t\t\t|   there is no guest has checkedIn recently   |\n";
+
     }
 
 }
