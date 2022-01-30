@@ -7,7 +7,7 @@ using namespace std;
  
 
 int const size = 3;
-int counter = 1;
+int counter = 0;
 
 struct Guest{
     string GuestName;
@@ -59,7 +59,8 @@ class hotel{
 
 // check in function stores quest important data
 void hotel::CheckIn(){
-    
+
+    counter++;
     if(!IsFull()){
     string name;
     string id;
@@ -72,7 +73,7 @@ void hotel::CheckIn(){
     cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t\t|   Hotel - CheckIn    |\n";
 	cout<<"\t\t ===================================================\n";
-    cout<<"\t\t\t\t|   Guest number -> "<<counter;
+    cout<<"\t\t\t\t|   Guest number -> "<< counter;
     cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   GuestName ->";
 	cin >> name;
@@ -100,13 +101,12 @@ void hotel::CheckIn(){
     if (front == NULL) 
     {
         front = rear = temp;
-        counter++;
         return;
     }
     //adding the node in the end of the queue
     rear->next = temp;
     rear = temp;
-    counter++;
+    
     }else
     {
          cout<<"\t\t ===================================================\n";
@@ -253,7 +253,7 @@ void hotel :: CpacityReport()
 {
     cout<<"\n";
     	cout<<"\t\t ===================================================\n";
-	cout<<"\t\t\t\t|   Hotel Management - CpacityReport  |\n";
+	cout<<"\t\t\t|   Hotel Management - CpacityReport  |\n";
 	cout<<"\t\t ===================================================\n";
     if(IsEmpty()){
         cout<<"\t\t ===================================================\n";
@@ -269,9 +269,9 @@ void hotel :: CpacityReport()
     }else
     {
         cout<<"\n\t\t----------------------------------------------------\n";
-        cout<<"\t\t\t\t|  we have  "<< counter-1 << "  busy Room ";
+        cout<<"\t\t\t\t|  we have  "<< counter << "  busy Room ";
     	cout<<"\n\t\t----------------------------------------------------\n";
-        cout<<"\t\t\t\t|  we have  "<< size - counter + 1 << "  empty room";
+        cout<<"\t\t\t\t|  we have  "<< size - counter  << "  empty room";
     	cout<<"\n\t\t----------------------------------------------------\n";
     }
 }
@@ -284,7 +284,7 @@ bool hotel :: IsEmpty()
         return false;
 }
 bool hotel :: IsFull(){
-    if(counter  == size + 1)
+    if(counter  == size )
         return true;
     else
         return false;    
@@ -333,9 +333,9 @@ do
                 break;
             case 3: {guest.displayGuests();}
                 break;
-            case 4: {guest.SearchforGuest();}
+            case 4: {guest.CpacityReport();}
                 break;
-            case 5: {guest.CpacityReport();}
+            case 5: {guest.SearchforGuest();}
                 break;    
 			default: cout << "\nThank you.. see you again.." << endl;
 					 return 0;
@@ -346,3 +346,7 @@ do
 
     return 0;
 }
+
+
+
+
