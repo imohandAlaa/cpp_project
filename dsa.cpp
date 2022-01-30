@@ -210,7 +210,7 @@ void hotel::displayGuests()
 void hotel::SearchforGuest(){
     int choice;
     Guest* fetch;
-    
+    if(!IsEmpty()){
     cout<<"\n";
     cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t\t|   Hotel - SearchforGuest    |\n";
@@ -273,7 +273,11 @@ void hotel::SearchforGuest(){
 
         }
     }
-
+   }else
+   {
+       cout<<"\t\t\t\t|   Hotel - Search    |\n";
+        cout<<"\t\t\t\t|   there is no guest has checkedIn recently |\n";
+   }
 }
 
 
