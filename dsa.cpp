@@ -16,6 +16,7 @@ struct Guest{
     string checkInDate;
     int DurationOfStay;
     int GuestRank;
+    bool Payment;
     Guest *next;
     Guest(){
         
@@ -25,15 +26,16 @@ struct Guest{
         checkInDate = "";
         DurationOfStay = 0;
         GuestRank = 0;
-        
+        Payment = false;
     }
-    Guest(string name,string id,int number,string date,int duration ,int rank){
+    Guest(string name,string id,int number,string date,int duration ,int rank,bool pay){
         this->GuestName = name;
         this->Guestid = id;
         this->contactNumber = number;
         this->checkInDate = date;
         this->DurationOfStay =duration;
         this->GuestRank = rank;
+        this->Payment = pay;
     }
 };
  
@@ -54,8 +56,7 @@ class hotel{
     void MakePayment();
     bool IsEmpty();
     bool IsFull();
-    void destroyQueue();
-   // ~hotel();
+    
 };
 
 // check in function stores quest important data
@@ -174,6 +175,15 @@ void hotel:: show(Guest *item)
     	cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   DurationOfStay ->"<<temp->DurationOfStay;
     	cout<<"\n\t\t----------------------------------------------------\n";
+        if(temp->Payment ==true)
+        {
+            cout<<"\t\t\t\t|   PaymentStatus -> Successful ";
+    	    cout<<"\n\t\t----------------------------------------------------\n";
+        }else
+        {
+            cout<<"\t\t\t\t|   PaymentStatus -> Falied";
+    	    cout<<"\n\t\t----------------------------------------------------\n";
+        }
 
 }
 
@@ -262,10 +272,29 @@ void hotel::SearchforGuest(){
 }
 
 
+void hotel ::MakePayment()
+{
+    int choose;
+    cout<<"\t\t\t|   Hotel Management - Payment  |\n";
+    cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t|   choose payment method ->";
+    cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t|   1.credit card ";
+    cout<<"\n\t\t----------------------------------------------------\n";
+    cout<<"\t\t|   2.cash ";
+    cout<<"\n\t\t----------------------------------------------------\n"; 
+    cin >> choose;
+    if(choose == 1){
+        front->Payment = true;
+    }else
+        front->Payment = true;
+}
+
+
 void hotel :: CpacityReport()
 {
     cout<<"\n";
-    	cout<<"\t\t ===================================================\n";
+    cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t|   Hotel Management - CpacityReport  |\n";
 	cout<<"\t\t ===================================================\n";
     if(IsEmpty()){
@@ -305,7 +334,6 @@ bool hotel :: IsFull(){
 
 void dispMenu()
 {
-    
 	cout<<"\n";
     	cout<<"\t\t ===================================================\n";
 	cout<<"\t\t\t\t|   Hotel Management   |\n";
@@ -316,7 +344,7 @@ void dispMenu()
     	cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   3.displayGuests";
     	cout<<"\n\t\t----------------------------------------------------\n";
-    cout<<"\t\t\t\t|   4.checkCpacity";
+    cout<<"\t\t\t\t|   4.CpacityReport";
     	cout<<"\n\t\t----------------------------------------------------\n";
     cout<<"\t\t\t\t|   5.SearchforGuest";
     	cout<<"\n\t\t----------------------------------------------------\n";
@@ -327,17 +355,14 @@ void dispMenu()
 
 }
 int main(){
-
     hotel guest;
     guest.creatqueue();
     int choice;
 do
 {
 		dispMenu();
-		
 		cin >> choice;
 		cin.ignore();
-		
 		switch(choice)
 		{
 			case 1: {guest.CheckIn();}
@@ -349,12 +374,14 @@ do
             case 4: {guest.CpacityReport();}
                 break;
             case 5: {guest.SearchforGuest();}
-                break;    
+                break;
+            case 6: {guest.MakePayment();}
+                break;        
 			default: cout << "\nThank you.. see you again.." << endl;
 					 return 0;
 		}
 		
-	} while ((choice > 0) && (choice < 6));
+	} while ((choice > 0) && (choice < 7));
 
 
     return 0;
