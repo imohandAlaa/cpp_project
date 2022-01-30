@@ -104,8 +104,10 @@ void hotel::CheckIn(){
         return;
     }
     //adding the node in the end of the queue
+    temp->next = NULL;
     rear->next = temp;
     rear = temp;
+
     
     }else
     {
