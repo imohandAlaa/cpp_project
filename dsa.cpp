@@ -1,6 +1,5 @@
-
+//Mohand Alaa Abouzeid
 #include<iostream>
-#include <ctime>
 
 
 using namespace std;
@@ -19,7 +18,6 @@ struct Guest{
     bool Payment;
     Guest *next;
     Guest(){
-        
         GuestName = "";
         Guestid = "";
         contactNumber = 0;
@@ -395,7 +393,3 @@ do
 
     return 0;
 }
-
-
-
-
